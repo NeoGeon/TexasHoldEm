@@ -22,8 +22,6 @@ public:
     Card(const Card& c);
     Card(Colors col, int num);
     Card operator=(Card& card);
-    int cardsRemain();
-    bool noCards();
     Colors Color();
     int Number();
     ~Card();
@@ -38,6 +36,8 @@ public:
     Card draw();
     void shuffle();
     void printCards();
+    int cardsRemain();
+    bool noCards();
     ~Deck();
 };
 

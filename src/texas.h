@@ -3,6 +3,7 @@
 #include<string>
 #include<vector>
 #include"deck.h"
+#include"infoQ.h"
 enum TexasPhase{
     preFlop,
     Flop,
@@ -34,13 +35,17 @@ class Player{
 private:
     vector<Cards> hand;
     int chips;
+    TexasAction action;
     bool in_pot;
+    InfoQueue& queue;
 public:
-    Player();
+    Player(InfoQueue&);
     ~Player();
+    void startNewRound();
     void getCard();
-    void addMoney();
-    
+    void addChips(int pot);
+    bool isAlive();
+    TexasAction action();
     void sit();
 };
 class TexasHoldEm{
@@ -60,6 +65,9 @@ private:
     int winner; 
     long long pot;
     const static int playerMax=7;
+    InfoQueue& queue;
+
+
     bool CardNumberIsBigger(Card card1. Card card2);
     bool NumberIsBigger(vector<Card> suit1, vector<Card> suit2);
     bool SuitPatternIsBigger(vector<Card> suit1, vector<Card> suit2);
@@ -82,9 +90,9 @@ private:
     vector<Card>& FinalCards(vector<Card> cards);
     void sortCard(vector<Card> suit);
 public:
-    TexasHoldEm();
-    TexasHoldEm(int playerNum, int sbCount);
-    TexasHoldEm(int playerNum, int sbCount, tableMin, tableMax);
+    TexasHoldEm(InfoQueue& q);
+    TexasHoldEm(int playerNum, int sbCount, InfoQueue& q);
+    //TexasHoldEm(int playerNum, int sbCount, tableMin, tableMax);
     ~TexasHoldEm();
     void display();
     void addPlayer();
