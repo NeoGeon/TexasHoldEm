@@ -65,12 +65,12 @@ TexasSuitPattern Hand::Type(){
      //check strait
      int straitCnt = 0;
      for(auto it=totalCards.begin()+1;it!=totalCards.end();it++){
-         if(it->Number()-(it-1)->Number()==1)
+         if(it->Number()-(it-1)->Number()==1){
              straitCnt++;
-             if(it->Number()==5 && (totalCards.end()-1)->Number()==1 && straitCnt==3){
+             if(it->Number()==5 && totalCards[6].Number()==1 && straitCnt==3){
                 straitCnt++;
              }
-         else if(it->Number()==1 && (it-1)->Number()==13 && straitCnt==3){
+         }else if(it->Number()==1 && (it-1)->Number()==13 && straitCnt==3){
              straitCnt++;
          }else{
              straitCnt=0;
@@ -183,8 +183,15 @@ TexasSuitPattern Hand::Type(){
              }
              if(straitCnt==4)break;
          } 
-         for(int i=lastIndx;i>=lastIndx-4;i--){
-             finalCards.push_back(totalCards[i]);
+         if(straitCnt==3){
+            finalCards.push_back(totalCards[6]);
+            for(int i=0;i<=3;i++){
+                 finalCards.push_back(totalCards[i]);
+            }
+         }else{
+             for(int i=lastIndx-4;i<=lastIndx;i++){
+                 finalCards.push_back(totalCards[i]);
+             }  
          }
          return Strait;
      }
