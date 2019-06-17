@@ -21,7 +21,7 @@ public:
     Card();
     Card(const Card& c);
     Card(Colors col, int num);
-    Card operator=(Card& card);
+    //Card operator=(Card& card);
     Colors Color();
     int Number();
     ~Card();

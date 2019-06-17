@@ -11,11 +11,11 @@ Card::Card(){};
 Card::Card(Colors col, int num):color_(col), number_(num){
     fmtCalc();
 };
-Card Card::operator=(Card &card){
+/*Card Card::operator=(Card &card){
     color_=card.Color();
     number_=card.Number();
     fmt=card.Fmt();
-}
+}*/
 Card::Card(const Card& c){
     color_=c.color_;
     number_=c.number_;
